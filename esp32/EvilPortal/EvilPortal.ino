@@ -137,14 +137,12 @@ void getInitInput() {
         if (strncmp(serialMessage, SET_HTML_CMD, strlen(SET_HTML_CMD)) == 0) {
           serialMessage += strlen(SET_HTML_CMD);
           strncpy(index_html, serialMessage, strlen(serialMessage) - 1);
-          strcat(index_html, "\0");
           has_html = true;
           Serial.println("html set");
         } else if (strncmp(serialMessage, SET_AP_CMD, strlen(SET_AP_CMD)) ==
                    0) {
           serialMessage += strlen(SET_AP_CMD);
           strncpy(apName, serialMessage, strlen(serialMessage) - 1);
-          strcat(apName, "\0");
           has_ap = true;
           Serial.println("ap set");
         } else if (strncmp(serialMessage, RESET_CMD, strlen(RESET_CMD)) == 0) {
