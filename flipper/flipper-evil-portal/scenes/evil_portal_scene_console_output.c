@@ -104,13 +104,12 @@ void evil_portal_scene_console_output_on_enter(void *context) {
         strncmp(SET_HTML_CMD, app->selected_tx_string, strlen(SET_HTML_CMD))) {
       evil_portal_read_index_html(context);
 
-      char *data = malloc(
-          (size_t)(strlen((char *)app->index_html) + strlen("sethtml=")));
-      furi_string_cat((FuriString *)data, "sethtml=");
-      furi_string_cat((FuriString *)data, (char *)app->index_html);
+      FuriString *data = furi_string_alloc();
+      furi_string_cat(data, "sethtml=");
+      furi_string_cat(data, (char *)app->index_html);
 
-      evil_portal_uart_tx((uint8_t *)(furi_string_get_cstr((FuriString *)data)),
-                          strlen(furi_string_get_cstr((FuriString *)data)));
+      evil_portal_uart_tx((uint8_t *)(furi_string_get_cstr(data)),
+                          strlen(furi_string_get_cstr(data)));
       evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
       app->sent_html = true;
