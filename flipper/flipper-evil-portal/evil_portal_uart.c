@@ -81,24 +81,22 @@ static int32_t uart_worker(void *context) {
           }
 
           if (uart->app->sent_reset == false) {
-            furi_string_cat((FuriString *)uart->app->portal_logs, (char *)uart->rx_buf);
+            furi_string_cat(uart->app->portal_logs, (char *)uart->rx_buf);
           }
 
-          if (strlen(uart->app->portal_logs) > 4000) {
+          if (furi_string_utf8_length(uart->app->portal_logs) > 4000) {
             write_logs(uart->app->portal_logs);
-            free(uart->app->portal_logs);
-            strcpy(uart->app->portal_logs, "");
+            furi_string_reset(uart->app->portal_logs);
           }
         } else {          
           uart->rx_buf[len] = '\0';
           if (uart->app->sent_reset == false) {
-            furi_string_cat((FuriString *)uart->app->portal_logs, (char *)uart->rx_buf);
+            furi_string_cat(uart->app->portal_logs, (char *)uart->rx_buf);
           }
 
-          if (strlen(uart->app->portal_logs) > 4000) {
+          if (furi_string_utf8_length(uart->app->portal_logs) > 4000) {
             write_logs(uart->app->portal_logs);
-            free(uart->app->portal_logs);
-            strcpy(uart->app->portal_logs, "");
+            furi_string_reset(uart->app->portal_logs);
           }
         }
       } 
