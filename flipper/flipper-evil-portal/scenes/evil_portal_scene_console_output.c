@@ -71,6 +71,7 @@ void evil_portal_scene_console_output_on_enter(void *context) {
         strncmp(SET_HTML_CMD, app->selected_tx_string, strlen(SET_HTML_CMD))) {
 
       portal_file_set = evil_portal_read_index_html(context);
+
       if (portal_file_set) {
         app->command_queue[0] = SET_AP_CMD;
         app->has_command_queue = true;
