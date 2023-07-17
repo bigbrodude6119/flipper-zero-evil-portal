@@ -11,6 +11,9 @@
 #include <gui/scene_manager.h>
 #include <gui/view_dispatcher.h>
 
+#include <dialogs/dialogs.h>
+#include <assets_icons.h>
+
 #define NUM_MENU_ITEMS (4)
 
 #define EVIL_PORTAL_TEXT_BOX_STORE_SIZE (4096)
@@ -20,41 +23,45 @@
 #define SET_AP_CMD "setap"
 #define RESET_CMD "reset"
 
+#define EVIL_PORTAL_INDEX_EXTENSION ".html"
+#define EVIL_PORTAL_BASE_FOLDER "/apps_data/evil_portal/"
+
 struct Evil_PortalApp {
-  Gui *gui;
-  ViewDispatcher *view_dispatcher;
-  SceneManager *scene_manager;
+    Gui* gui;
+    ViewDispatcher* view_dispatcher;
+    SceneManager* scene_manager;
+    DialogsApp* dialogs;
 
-  FuriString* portal_logs;
-  const char *command_queue[1];
-  int command_index;
-  bool has_command_queue;
+    FuriString* portal_logs;
+    const char* command_queue[1];
+    int command_index;
+    bool has_command_queue;
 
-  FuriString *text_box_store;
-  size_t text_box_store_strlen;
-  TextBox *text_box;
+    FuriString* text_box_store;
+    size_t text_box_store_strlen;
+    TextBox* text_box;
 
-  VariableItemList *var_item_list;
-  Evil_PortalUart *uart;
+    VariableItemList* var_item_list;
+    Evil_PortalUart* uart;
 
-  int selected_menu_index;
-  int selected_option_index[NUM_MENU_ITEMS];
-  const char *selected_tx_string;
-  bool is_command;
-  bool is_custom_tx_string;
-  bool focus_console_start;
-  bool show_stopscan_tip;
-  bool sent_ap;
-  bool sent_html;
-  bool sent_reset;
-  int BAUDRATE;
+    int selected_menu_index;
+    int selected_option_index[NUM_MENU_ITEMS];
+    const char* selected_tx_string;
+    bool is_command;
+    bool is_custom_tx_string;
+    bool focus_console_start;
+    bool show_stopscan_tip;
+    bool sent_ap;
+    bool sent_html;
+    bool sent_reset;
+    int BAUDRATE;
 
-  uint8_t *index_html;
-  uint8_t *ap_name;
+    uint8_t* index_html;
+    uint8_t* ap_name;
 };
 
 typedef enum {
-  Evil_PortalAppViewVarItemList,
-  Evil_PortalAppViewConsoleOutput,
-  Evil_PortalAppViewStartPortal,
+    Evil_PortalAppViewVarItemList,
+    Evil_PortalAppViewConsoleOutput,
+    Evil_PortalAppViewStartPortal,
 } Evil_PortalAppView;
