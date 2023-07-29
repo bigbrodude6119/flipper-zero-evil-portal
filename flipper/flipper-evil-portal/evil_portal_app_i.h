@@ -10,6 +10,7 @@
 #include <gui/modules/variable_item_list.h>
 #include <gui/scene_manager.h>
 #include <gui/view_dispatcher.h>
+#include <storage/storage.h>
 
 #define NUM_MENU_ITEMS (4)
 
@@ -24,6 +25,7 @@ struct Evil_PortalApp {
   Gui *gui;
   ViewDispatcher *view_dispatcher;
   SceneManager *scene_manager;
+  Storage *storage;
 
   FuriString* portal_logs;
   const char *command_queue[1];

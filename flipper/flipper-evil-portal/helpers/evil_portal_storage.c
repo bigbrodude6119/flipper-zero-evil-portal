@@ -1,12 +1,6 @@
 #include "evil_portal_storage.h"
 
-Storage *evil_portal_open_storage() {
-  return furi_record_open(RECORD_STORAGE);
-}
-
-void evil_portal_close_storage() { furi_record_close(RECORD_STORAGE); }
-
-char *sequential_file_resolve_path(Storage *storage, const char *dir,
+static char *sequential_file_resolve_path(Storage *storage, const char *dir,
                                    const char *prefix, const char *extension) {
   if (storage == NULL || dir == NULL || prefix == NULL || extension == NULL) {
     return NULL;
@@ -26,9 +20,7 @@ char *sequential_file_resolve_path(Storage *storage, const char *dir,
   return strdup(file_path);
 }
 
-void write_logs(FuriString *portal_logs) {
-  Storage *storage = evil_portal_open_storage();
-
+void write_logs(Storage *storage, FuriString *portal_logs) {
   if (!storage_file_exists(storage, EVIL_PORTAL_LOG_SAVE_PATH)) {
     storage_simply_mkdir(storage, EVIL_PORTAL_LOG_SAVE_PATH);
   }
@@ -43,5 +35,4 @@ void write_logs(FuriString *portal_logs) {
   }
   storage_file_close(file);
   storage_file_free(file);
-  evil_portal_close_storage();
 }
