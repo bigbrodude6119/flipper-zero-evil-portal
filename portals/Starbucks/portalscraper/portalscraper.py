@@ -8,6 +8,13 @@ import sys
 from urllib.parse import urljoin, urlparse
 import re
 import shutil
+import platform
+
+def get_chromedriver_path():
+    if platform.system() == "Windows":
+        return "chromedriver.exe"
+    else:
+        return "./chromedriver"  
 
 def clean_filename(filename):
     return re.sub(r'[\\/*?:"<>|]', '_', filename)  # replace invalid characters with an underscore
@@ -49,7 +56,7 @@ def main(url):
     options.add_argument('--incognito')
     options.add_argument('--headless')
     
-    service = Service('chromedriver.exe')
+    service = Service(get_chromedriver_path())
     driver = webdriver.Chrome(service=service, options=options)
 
     driver.get(url)
