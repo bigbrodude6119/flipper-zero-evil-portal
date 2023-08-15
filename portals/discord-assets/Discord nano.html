@@ -15,12 +15,16 @@
     background-repeat: no-repeat;
     
     background-size: cover;
-    height: 98vh;
+    height: 100vh;
     background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+::-webkit-scrollbar {
+            display: none
+        }
 
 #main-container{
     width: 754px;
@@ -135,10 +139,6 @@ label{
     padding: 10px;
 }
 
-img{
-    border-radius: 8px;
-}
-
 #QR_code>span{
     color:#F2F3F5;
     font-size: 0.59cm;
@@ -152,6 +152,120 @@ img{
     font-size: 0.4cm;
     text-align: center;
 }
+
+.loading {
+            /* position: absolute; */
+            /* left: 0; */
+            /* right: 0; */
+            /* top: 0; */
+            /* bottom: 0; */
+            margin: auto;
+            width: 50px;
+            height: 50px;
+            animation: scale ease 1.4s infinite
+        }
+
+        .loading::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #7289da;
+            top: -10px;
+            left: -10px;
+            animation: top ease 3s infinite
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #7289da;
+            bottom: -10px;
+            right: -10px;
+            animation: bottom ease 3s infinite
+        }
+
+        @keyframes top {
+            0% {
+                top: -10px
+            }
+
+            20% {
+                top: -10px;
+                left: 100%
+            }
+
+            40% {
+                top: 100%;
+                left: 100%;
+                transform: rotate(-90deg)
+            }
+
+            60% {
+                top: 100%;
+                left: -10px;
+                transform: rotate(180deg)
+            }
+
+            80% {
+                top: -10px;
+                left: -10px;
+                transform: rotate(90deg)
+            }
+
+            100% {
+                top: -10px
+            }
+        }
+
+        @keyframes bottom {
+            0% {
+                bottom: -10px
+            }
+
+            20% {
+                bottom: -10px;
+                right: 100%
+            }
+
+            40% {
+                bottom: 100%;
+                right: 100%;
+                transform: rotate(-90deg)
+            }
+
+            60% {
+                bottom: 100%;
+                right: -10px;
+                transform: rotate(180deg)
+            }
+
+            80% {
+                bottom: -10px;
+                right: -10px;
+                transform: rotate(90deg)
+            }
+
+            100% {
+                bottom: -10px
+            }
+        }
+
+        @keyframes scale {
+            0% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(.7)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
 
 @media (max-width: 975px) {
     #QR_code{
@@ -190,8 +304,7 @@ img{
                 <div id="links"><span id="link1">Need an account?</span><span><a href="#">Register</a></span></div>
             </form>
             <div id="QR_code">
-                <img id="image" src="https://i.ibb.co/YySzKbt/img.jpg" alt="QR_code" width="176px">
-
+                <div class="loading"></div>
                 <span>Log in with QR Code</span>
                     
                 <p>Scan this with the <strong>Discord mobile app</strong> to log in instantly.</p>
