@@ -18,4 +18,4 @@ Bugs:
 
 Big Thanks to [@GauravKukreti](https://github.com/GauravKukreti) for the bug fixes and optimization.
 
-## Original: [https://github.com/bigbrodude6119/flipper-zero-evil-portal](https://github.com/bigbrodude6119/flipper-zero-evil-portal)
+## Original Repo: [Click here](https://github.com/bigbrodude6119/flipper-zero-evil-portal) to check it out.
