@@ -134,17 +134,29 @@ void getInitInput() {
       if (Serial.available() > 0) {
         String flipperMessage = Serial.readString();
         const char *serialMessage = flipperMessage.c_str();
+        // Checking message received from Serial port
+
+        // If message starts with "sethtml="
         if (strncmp(serialMessage, SET_HTML_CMD, strlen(SET_HTML_CMD)) == 0) {
+          // Moving pointer to the value after the '=' of "sethtml="
           serialMessage += strlen(SET_HTML_CMD);
+
+          // Copying value into index_html
           strncpy(index_html, serialMessage, strlen(serialMessage) - 1);
           has_html = true;
           Serial.println("html set");
-        } else if (strncmp(serialMessage, SET_AP_CMD, strlen(SET_AP_CMD)) ==
-                   0) {
+
+        // If message starts with "setap="
+        } else if (strncmp(serialMessage, SET_AP_CMD, strlen(SET_AP_CMD)) == 0) {
+          // Moving pointer to the value after the '=' of "setap="
           serialMessage += strlen(SET_AP_CMD);
+
+          // Copying value into apName
           strncpy(apName, serialMessage, strlen(serialMessage) - 1);
           has_ap = true;
           Serial.println("ap set");
+
+        // If message starts with "reset"
         } else if (strncmp(serialMessage, RESET_CMD, strlen(RESET_CMD)) == 0) {
           resetFunction();
         }
@@ -185,8 +197,7 @@ void loop() {
   if (name_received && password_received) {
     name_received = false;
     password_received = false;
-    String logValue1 =
-        "u: " + user_name;
+    String logValue1 = "u: " + user_name;
     String logValue2 = "p: " + password;
     Serial.println(logValue1);
     Serial.println(logValue2);

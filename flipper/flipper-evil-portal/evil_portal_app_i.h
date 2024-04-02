@@ -21,6 +21,7 @@
 #define RESET_CMD "reset"
 
 struct Evil_PortalApp {
+  // System app variables used to run app
   Gui *gui;
   ViewDispatcher *view_dispatcher;
   SceneManager *scene_manager;
