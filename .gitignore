@@ -1,2 +1,6 @@
 */.vscode
 .DS_Store
+
+*.tmp
+*.log
+portals_revamped/raw/

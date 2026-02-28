@@ -2,6 +2,9 @@
 
 An evil captive portal Wi-Fi access point using the Flipper Zero and Wi-Fi dev board
 
+> [!NOTE]
+> ## Please head over to the [`revamped`](https://github.com/JMcrafter26/flipper-zero-evil-portal/tree/main/portals_revamped) folder for the newest portals
+
 ## About
 
 **This project is a work in progress.**
