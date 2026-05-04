@@ -38,52 +38,51 @@ void evil_portal_scene_console_output_on_enter(void *context) {
     app->text_box_store_strlen = 0;
     app->sent_reset = false;
 
-    if (0 == strncmp("help", app->selected_tx_string, strlen("help"))) {
-      const char *help_msg =
+    if (0 == strncmp("help", app->selected_tx_string, sizeof("help") - 1)) {
+      static const char help_msg[] =
           "BLUE = Waiting\nGREEN = Good\nRED = Bad\n\nThis project is a "
           "WIP.\ngithub.com/bigbrodude6119/flipper-zero-evil-portal\n\n"
           "Version 0.0.2\n\n";
       furi_string_cat_str(app->text_box_store, help_msg);
-      app->text_box_store_strlen += strlen(help_msg);
+      app->text_box_store_strlen += sizeof(help_msg) - 1;
       if (app->show_stopscan_tip) {
-        const char *msg = "Press BACK to return\n";
+        static const char msg[] = "Press BACK to return\n";
         furi_string_cat_str(app->text_box_store, msg);
-        app->text_box_store_strlen += strlen(msg);
+        app->text_box_store_strlen += sizeof(msg) - 1;
       }
     }
 
-    if (0 == strncmp("savelogs", app->selected_tx_string, strlen("savelogs"))) {
-      const char *help_msg = "Logs saved.\n\n";
-      furi_string_cat_str(app->text_box_store, help_msg);
-      app->text_box_store_strlen += strlen(help_msg);
+    if (0 == strncmp("savelogs", app->selected_tx_string, sizeof("savelogs") - 1)) {
+      static const char logs_msg[] = "Logs saved.\n\n";
+      furi_string_cat_str(app->text_box_store, logs_msg);
+      app->text_box_store_strlen += sizeof(logs_msg) - 1;
       write_logs(app->portal_logs);
       furi_string_reset(app->portal_logs);
       if (app->show_stopscan_tip) {
-        const char *msg = "Press BACK to return\n";
+        static const char msg[] = "Press BACK to return\n";
         furi_string_cat_str(app->text_box_store, msg);
-        app->text_box_store_strlen += strlen(msg);
+        app->text_box_store_strlen += sizeof(msg) - 1;
       }
     }
 
-    if (0 ==
-        strncmp(SET_HTML_CMD, app->selected_tx_string, strlen(SET_HTML_CMD))) {
+    if (0 == strncmp(SET_HTML_CMD, app->selected_tx_string, sizeof(SET_HTML_CMD) - 1)) {
       app->command_queue[0] = SET_AP_CMD;
       app->has_command_queue = true;
       app->command_index = 0;
       if (app->show_stopscan_tip) {
-        const char *msg =
+        static const char msg[] =
             "Starting portal\nIf no response press\nBACK to return\n";
         furi_string_cat_str(app->text_box_store, msg);
-        app->text_box_store_strlen += strlen(msg);
+        app->text_box_store_strlen += sizeof(msg) - 1;
       }
     }
 
-    if (0 == strncmp(RESET_CMD, app->selected_tx_string, strlen(RESET_CMD))) {
+    if (0 == strncmp(RESET_CMD, app->selected_tx_string, sizeof(RESET_CMD) - 1)) {
       app->sent_reset = true;
       if (app->show_stopscan_tip) {
-        const char *msg = "Reseting portal\nPress BACK to return\n\n\n\n";
+        static const char msg[] = "Reseting portal\nPress BACK to return\n\n\n\n";
         furi_string_cat_str(app->text_box_store, msg);
-        app->text_box_store_strlen += strlen(msg);
+        app->text_box_store_strlen += sizeof(msg) - 1;
       }
     }
   }
@@ -100,8 +99,7 @@ void evil_portal_scene_console_output_on_enter(void *context) {
       app->uart, evil_portal_console_output_handle_rx_data_cb);
 
   if (app->is_command && app->selected_tx_string) {
-    if (0 ==
-        strncmp(SET_HTML_CMD, app->selected_tx_string, strlen(SET_HTML_CMD))) {
+    if (0 == strncmp(SET_HTML_CMD, app->selected_tx_string, sizeof(SET_HTML_CMD) - 1)) {
       evil_portal_read_index_html(context);
 
       FuriString *data = furi_string_alloc();
@@ -109,7 +107,7 @@ void evil_portal_scene_console_output_on_enter(void *context) {
       furi_string_cat(data, (char *)app->index_html);
 
       evil_portal_uart_tx((uint8_t *)(furi_string_get_cstr(data)),
-                          strlen(furi_string_get_cstr(data)));
+                          furi_string_size(data));
       evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
       app->sent_html = true;
@@ -118,16 +116,15 @@ void evil_portal_scene_console_output_on_enter(void *context) {
       free(app->index_html);
 
       evil_portal_read_ap_name(context);
-    } else if (0 ==
-               strncmp(RESET_CMD, app->selected_tx_string, strlen(RESET_CMD))) {
+    } else if (0 == strncmp(RESET_CMD, app->selected_tx_string, sizeof(RESET_CMD) - 1)) {
       app->sent_html = false;
       app->sent_ap = false;
       evil_portal_uart_tx((uint8_t *)(app->selected_tx_string),
-                          strlen(app->selected_tx_string));
+                          sizeof(RESET_CMD) - 1);
       evil_portal_uart_tx((uint8_t *)("\n"), 1);
-    } else if (1 == strncmp("help", app->selected_tx_string, strlen("help"))) {
+    } else if (1 == strncmp("help", app->selected_tx_string, sizeof("help") - 1)) {
       evil_portal_uart_tx((uint8_t *)(app->selected_tx_string),
-                          strlen(app->selected_tx_string));
+                          sizeof("help") - 1);
       evil_portal_uart_tx((uint8_t *)("\n"), 1);
     }
   }

