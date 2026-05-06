@@ -136,13 +136,15 @@ void getInitInput() {
         const char *serialMessage = flipperMessage.c_str();
         if (strncmp(serialMessage, SET_HTML_CMD, strlen(SET_HTML_CMD)) == 0) {
           serialMessage += strlen(SET_HTML_CMD);
-          strncpy(index_html, serialMessage, strlen(serialMessage) - 1);
+          strncpy(index_html, serialMessage, sizeof(index_html) - 1);
+          index_html[sizeof(index_html) - 1] = '\0';
           has_html = true;
           Serial.println("html set");
         } else if (strncmp(serialMessage, SET_AP_CMD, strlen(SET_AP_CMD)) ==
                    0) {
           serialMessage += strlen(SET_AP_CMD);
-          strncpy(apName, serialMessage, strlen(serialMessage) - 1);
+          strncpy(apName, serialMessage, sizeof(apName) - 1);
+          apName[sizeof(apName) - 1] = '\0';
           has_ap = true;
           Serial.println("ap set");
         } else if (strncmp(serialMessage, RESET_CMD, strlen(RESET_CMD)) == 0) {
@@ -185,11 +187,10 @@ void loop() {
   if (name_received && password_received) {
     name_received = false;
     password_received = false;
-    String logValue1 =
-        "u: " + user_name;
-    String logValue2 = "p: " + password;
-    Serial.println(logValue1);
-    Serial.println(logValue2);
+    Serial.print("u: ");
+    Serial.println(user_name);
+    Serial.print("p: ");
+    Serial.println(password);
   }
   if(checkForCommand(RESET_CMD)) {
     Serial.println("reseting");

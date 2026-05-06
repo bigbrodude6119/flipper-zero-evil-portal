@@ -39,7 +39,7 @@ void evil_portal_read_index_html(void *context) {
         "Is the SD Card set up correctly? <br>See instructions @ "
         "github.com/bigbrodude6119/flipper-zero-evil-portal<br>"
         "Under the 'Install pre-built app on the flipper' section.";
-    app->index_html = (uint8_t *)html_error;
+    app->index_html = (uint8_t *)strdup(html_error);
   }
 
   evil_portal_close_storage();
@@ -72,7 +72,7 @@ void evil_portal_read_ap_name(void *context) {
     storage_file_free(ap_name);
   } else {
     char *app_default = "Evil Portal";
-    app->ap_name = (uint8_t *)app_default;
+    app->ap_name = (uint8_t *)strdup(app_default);
   }
   evil_portal_close_storage();
 }

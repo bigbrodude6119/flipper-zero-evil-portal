@@ -33,6 +33,9 @@ Evil_PortalApp *evil_portal_app_alloc() {
   app->command_index = 0;
   app->portal_logs = furi_string_alloc();
 
+  app->index_html = NULL;
+  app->ap_name = NULL;
+
   app->gui = furi_record_open(RECORD_GUI);
 
   app->view_dispatcher = view_dispatcher_alloc();
@@ -79,10 +82,17 @@ void evil_portal_app_free(Evil_PortalApp *app) {
   }
 
   // Send reset event to dev board
-  evil_portal_uart_tx((uint8_t *)(RESET_CMD), strlen(RESET_CMD));
+  evil_portal_uart_tx((uint8_t *)(RESET_CMD), sizeof(RESET_CMD) - 1);
   evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
   furi_assert(app);
+
+  if (app->index_html != NULL) {
+    free(app->index_html);
+  }
+  if (app->ap_name != NULL) {
+    free(app->ap_name);
+  }
 
   // Views
   view_dispatcher_remove_view(app->view_dispatcher,

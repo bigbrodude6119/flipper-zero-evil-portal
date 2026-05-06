@@ -56,14 +56,14 @@ static int32_t uart_worker(void *context) {
               if (0 ==
                   strncmp(SET_AP_CMD,
                           uart->app->command_queue[uart->app->command_index],
-                          strlen(SET_AP_CMD))) {
+                          sizeof(SET_AP_CMD) - 1)) {
                 FuriString *out_data = furi_string_alloc();
 
                 furi_string_cat(out_data, "setap=");
                 furi_string_cat(out_data, (char *)uart->app->ap_name);
 
                 evil_portal_uart_tx((uint8_t *)(furi_string_get_cstr(out_data)),
-                                    strlen(furi_string_get_cstr(out_data)));
+                                    furi_string_size(out_data));
                 evil_portal_uart_tx((uint8_t *)("\n"), 1);
 
                 uart->app->sent_ap = true;
