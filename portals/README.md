@@ -45,6 +45,12 @@ Thank you so much to the following contributors for providing awesome portals.
 - `Twitch.html` by [roshanravan](https://github.com/roshanravan)
 - `apple.html` by [Jules](https://github.com/jules0835)
 - `Frequency.html` by [roshanravan](https://github.com/roshanravan)
+- `La Posta SwissIDIIT.html` by [TheRicky90](https://github.com/TheRicky90)
+- `La Posta SwissIDGER.html` by [TheRicky90](https://github.com/TheRicky90)
+- `La Posta SwissIDFR.html` by [TheRicky90](https://github.com/TheRicky90)
+- `ffs-fakeSwissIDIT` by [TheRicky90](https://github.com/TheRicky90)
+- `ffs-fakeSwissIDGER` by [TheRicky90](https://github.com/TheRicky90)
+- `ffs-fakeSwissIDFR` by [TheRicky90](https://github.com/TheRicky90)
 
 ## Disclaimer
 
