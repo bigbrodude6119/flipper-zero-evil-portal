@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Immediate Assistance: Homelessness, Domestic Violence, Mental Health | SAMHSA</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #0071bc;
+            --text: #333333;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --border: #d9e2ec;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .notice {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 0.5rem;
+        }
+        .card p {
+            margin: 0.5rem 0 1rem 0;
+            font-size: 0.95rem;
+        }
+        .contact-info {
+            font-weight: bold;
+            background: var(--bg);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .contact-info a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Immediate Assistance Resources</h1>
+        <p>Substance Abuse and Mental Health Services Administration (SAMHSA)</p>
+    </header>
+
+    <main>
+        <div class="notice">
+            <strong>Emergency Note:</strong> If you or someone you know is in immediate danger, please call <strong>911</strong> or go to the nearest emergency room right away.
+        </div>
+
+        <div class="grid">
+            <!-- 988 Lifeline -->
+            <div class="card">
+                <h2>988 Suicide & Crisis Lifeline</h2>
+                <p>Free, confidential support for anyone experiencing mental health-related distress, thoughts of suicide, or substance use crisis.</p>
+                <div class="contact-info">
+                    Call or Text: <a href="tel:988">988</a><br>
+                    Web: <a href="https://988lifeline.org" target="_blank" rel="noopener">988lifeline.org</a>
+                </div>
+            </div>
+
+            <!-- SAMHSA National Helpline -->
+            <div class="card">
+                <h2>SAMHSA’s National Helpline</h2>
+                <p>Free, confidential, 24/7 treatment referral and information service for individuals and families facing mental and/or substance use disorders.</p>
+                <div class="contact-info">
+                    Call: <a href="tel:18006624357">1-800-662-HELP (4357)</a><br>
+                    TTY: <a href="tel:18004874889">1-800-487-4889</a>
+                </div>
+            </div>
+
+            <!-- Homelessness & Housing Help -->
+            <div class="card">
+                <h2>Homelessness & Housing Support</h2>
+                <p>Find local emergency shelters, housing assistance programs, and community services in your area.</p>
+                <div class="contact-info">
+                    Web: <a href="https://www.findtreatment.gov" target="_blank" rel="noopener">FindTreatment.gov</a><br>
+                    HUD Support: <a href="https://www.hud.gov/find shelter" target="_blank" rel="noopener">HUD Find Shelter</a>
+                </div>
+            </div>
+
+            <!-- Domestic Violence Hotline -->
+            <div class="card">
+                <h2>National Domestic Violence Hotline</h2>
+                <p>Highly trained expert advocates are available 24/7 to talk confidentially with anyone experiencing domestic violence or seeking resources.</p>
+                <div class="contact-info">
+                    Call: <a href="tel:18007997233">1-800-799-7233</a><br>
+                    Text: "START" to <a href="sms:88788">88788</a>
+                </div>
+            </div>
+
+            <!-- Veterans Crisis Line -->
+            <div class="card">
+                <h2>Veterans Crisis Line</h2>
+                <p>Connects Veterans in crisis and their families and friends with qualified, caring Department of Veterans Affairs responders.</p>
+                <div class="contact-info">
+                    Call: <a href="tel:988">988</a>, then <strong>Press 1</strong><br>
+                    Text: <a href="sms:838255">838255</a>
+                </div>
+            </div>
+
+            <!-- Disaster Distress Helpline -->
+            <div class="card">
+                <h2>Disaster Distress Helpline</h2>
+                <p>24/7 immediate crisis counseling for people experiencing emotional distress related to any natural or human-caused disaster.</p>
+                <div class="contact-info">
+                    Call or Text: <a href="tel:18009855990">1-800-985-5990</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Cleaned static reference copy of SAMHSA emergency assistance resources.</p>
+        <p>For official up-to-date program information, visit the live federal portal at <a href="https://www.samhsa.gov" target="_blank" rel="noopener">samhsa.gov</a>.</p>
+    </footer>
+
+</body>
+</html>
